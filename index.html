@@ -1,279 +1,64 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Not Almayı Unutmaa</title>
-<link rel="icon" type="image/png" href="icons8-note-100.png">
-<style>
-  body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 300vh;
+            width: 100vw;
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            background-color: rgb(17, 17, 17);
+            overflow-x: hidden;
+        }
+
+        .video-container {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            width: 100%;
+            margin-top: 60%;
+            height: 200vh;
+        }
+
+        .mainVideo {
+            position: sticky;
+            top: 0;
+            left: 0;
+            width: 100%;
+            object-fit: cover;
             height: 100vh;
-            margin: 0;
-            background-color: #d1c8c8;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-.input-container {
-            position: absolute;
-            width: 550px;
-            margin: auto;
-            top: 20%;
-            display: flex; /* Flexbox kullanarak içeriği hizalama */
-            align-items: baseline; /* Yatay hizalamayı baz çizgiye göre ayarla */
         }
 
-        input {
-            flex: 1; /* Input alanı genişliği esnek olarak ayarlandı */
-            padding: 15px;
-            font-size: 16px;
-            border: none;
-            border-radius: 5px 0 0 5px; /* Sol kenarları yuvarlak yap */
-            background-color: #f5f5f5;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: box-shadow 0.3s, transform 0.3s;
-        }
-
-        input:focus {
-            outline: none;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            transform: translateY(-2px);
-        }
-
-        .input-label {
-            position: absolute;
-            top: 50%;
-            left: 10px;
+        h1 {
+            margin-top: 50vh;
+            margin-left: 50%;
             transform: translateY(-50%);
-            color: rgba(0, 0, 0, 0.5);
-            font-size: 16px;
-            pointer-events: none;
-            transition: top 0.17s, font-size 0.17s, color 0.17s;
+            color: white
         }
-
-        input:focus + .input-label,
-        input:not(:placeholder-shown) + .input-label {
-            top: -3px;
-            font-size: 12px;
-            color: #0077FF;
-        }
-
-        .submit-button {
-            padding: 15px 20px; /* Butonun yüksekliği ve genişliği ayarlandı */
-            font-size: 16px;
-            border: none;
-            border-radius: 0 5px 5px 0; /* Sağ kenarları yuvarlak yap */
-            background-color: #0077FF;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .submit-button:hover {
-            background-color: #005bb5;
-        }
-
-        .submit-button:active {
-            background-color: #004494;
-            transform: scale(0.95);
-        }
-        .img{
-            position: absolute;
-            top: 3%;
-        
-        }
-        
-  ul {
-    position: absolute;
-    top :40%;
-            list-style: none;
-            padding: 0;
-        }
-        .list-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #777676;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 8px;
-            width: 500px; /* Sabit boyut */
-        }
-        .buttons {
-            display: flex;
-        }
-        .buttons button {
-            border: none;
-            padding: 10px 15px;
-            margin: 0;
-            background-color: #5c5c5c; /* Ana buton rengi */
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            border-radius: 0; /* Köşeleri düz bırak */
-        }
-        .buttons button:first-child {
-            background-color: #858585; /* İlk buton rengi */
-            border-top-left-radius: 6px; /* Sol üst ve sol alt köşeleri yuvarlak yap */
-            border-bottom-left-radius: 6px;
-        }
-        .buttons button:last-child {
-            background-color: #858585;
-            border-top-right-radius: 6px; /* Sağ üst ve sağ alt köşeleri yuvarlak yap */
-            border-bottom-right-radius: 6px;
-        }
-        .buttons button:hover {
-            background-color: #5b5a5a; /* Hover olayı rengi */
-        }
-        .buttons button:active {
-            background-color: #383838; /* Tıklama olayı rengi */
-            transform: scale(0.95); /* Küçülme efekti */
-        }
-        .list-item .text {
-            margin-right: 50px; /* Yazı ile butonlar arası mesafe */
-            color: #190303; /* Daha koyu renk */
-        }
-        
-
-  @media (max-width: 480px) {
-    .input-container {
-        position: absolute;
-      width: 98%; /* Küçük ekranlarda genişlik ayarı */
-      max-width: 100%; /* Tam genişlik */
-      left: 1%;
-    }
-    ul {
-    position: absolute;
-    top: 30%;
-            list-style: none;
-            padding: 0;
-        }
-    .list-item {
-      
-            display: flex;
-            left: 1%;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #b6b6b6;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 8px;
-           
-            width: 90%; /* Sabit boyut */
-            height: 10%;
-        }
-        .buttons button {
-            border: 0px;
-            padding: 5px 10px;
-           font-size: x-small;
-        }
-       #input-field{
-        font-size:large;
-       } 
-  }
-</style>
+    </style>
 </head>
+
 <body>
+    <div class="video-container">
+        <video id="mainVideo" class="mainVideo" preload="auto" muted playsinline>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+    </div>
+    <h1 class="animasyon-sagsol">selam</h1>
+    <h1 class="animasyon-sagsol">selam</h1>
+    <h1 class="animasyon-sagsol">selam</h1>
+    <h1 class="animasyon-sagsol">selam</h1>
+    <h1 class="animasyon-sagsol">selam</h1>
 
-     <img src="icons8-note-100.png" alt="Notttt" class="img">
-  <div class="input-container">
-    <input type="text" id="input-field" placeholder=" " />
-    <label for="input-field" class="input-label">Notunu al</label>
-    <button class="submit-button">Kaydet</button>
-</div>
-<ul>
-
-  
-
-</ul>
-
-<script>const kaydet= document.querySelector('.submit-button');
-let notdizi ; 
-kaydet.addEventListener('click',function(e){
-let notumuz = document.querySelector('#input-field').value;
-
-if(notumuz!=""){
-
-const not = document.querySelector('#input-field');
-not.value='';
-
-if(localStorage.getItem('notlar')==null){
-notdizi=[];
-
-}
-else{
-notdizi=JSON.parse(localStorage.getItem('notlar'))
-
-}
-notdizi.push(notumuz);
-
-
-localStorage.setItem('notlar',JSON.stringify(notdizi));
-location.reload();
-
-}
-else{
-    alert('KAYDEDİLEMEDİ')
-}
-})
-
-
-let ull= document.querySelector('ul');
-let lieklencek =JSON.parse(localStorage.getItem('notlar'))
-let dizimiz=lieklencek;
-console.log(dizimiz);
-
-if(lieklencek!=null){
-    //let urli=document.createElement('li');
-    lieklencek.forEach(function(say){
-    if(say!=''){
-        let listItem = document.createElement('li');
-        listItem.className = 'list-item';
-
-        let span = document.createElement('span');
-        span.className = 'text';
-        span.textContent = say;
-
-        let buttonsDiv = document.createElement('div');
-        buttonsDiv.className = 'buttons';
-
-        let doneButton = document.createElement('button');
-        doneButton.textContent = 'Yaptım!';
-        doneButton.onclick = function() {
-            listItem.style.textDecoration = 'line-through';
-        };
-
-        let deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Sil';
-        deleteButton.onclick = function(index) {
-let dizi=Array.from(dizimiz);
-            for(i = 0;i<dizi.length;i++){
-                if(dizi[i]==say){
-                 dizi.splice(i,1);
-                 localStorage.clear();
-
-                }
-                localStorage.setItem('notlar',JSON.stringify(dizi));
-                location.reload();
-            
-            }
-
-            console.log(dizi);
-
-          };
-
-        buttonsDiv.appendChild(doneButton);
-        buttonsDiv.appendChild(deleteButton);
-
-        listItem.appendChild(span);
-        listItem.appendChild(buttonsDiv);
-
-        ull.appendChild(listItem);
-    }
-    
-    })
-    
-}</script>
+    <script src="./animat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="./app.js"></script>
 </body>
+
 </html>
